@@ -1,0 +1,37 @@
+body{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+.modello{
+    margin-bottom: 0px;
+}
+
+.marca{
+    margin: 0px;
+}
+
+.titolo{
+    margin-bottom: 0px;
+}
+
+.intestazione{
+    display: inline;
+}
+
+.db{
+    display: inline;
+}
+
+.intestazione2{
+    margin-left: 160px;
+    display: inline;
+}
+
+#clock{
+    display: inline;
+}
+
