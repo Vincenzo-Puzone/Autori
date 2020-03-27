@@ -25,23 +25,42 @@ app.get('/',(req,res)=>{
     let sql = "SELECT * FROM Autori";
     db.all(sql,(err,rows)=>{
         autori=rows;
-        if (err) res.send('è esploso');
-        else {
-            sql = "SELECT * FROM Libri";
+        sql = "SELECT * FROM Libri";
+        db.all(sql,(err,rows)=>{
+            libri=rows;
+            sql = "SELECT * FROM autori_libri";
             db.all(sql,(err,rows)=>{
-                libri=rows;
-                if (err) res.send('è esploso parte 2');
-                else {
-                    sql = "SELECT * FROM autori_libri";
-                    db.all(sql,(err,rows)=>{
-                        relazioni=rows
-                        if (err) res.send('è esploso parte 3');
-                        else res.render('admin',{autori,libri,relazioni});
-                    });
-                }
+                relazioni=rows
+                res.render('admin',{autori,libri,relazioni});
             });
-        }
+        });
     });
+});
+
+app.post('/creadb',(req,res)=>{
+    sql='drop table if exists autori';
+    db.run(sql);
+    sql='drop table if exists libri';
+    db.run(sql);
+    sql='drop table if exists autori_libri';
+    db.run(sql);
+
+    sql='create table autori (id integer primary key,nome text,cognome text not null)';
+    db.run(sql,err=>{
+        sql='create table libri (id integer primary key,titolo text not null)';
+        db.run(sql,err=>{
+            sql='create table autori_libri (id integer primary key,id_autore integer not null,id_libro integer not null)';
+            db.run(sql,err=>{
+                if (err) res.sendFile(path.join(__dirname,'public','error.html'));
+            });
+        });
+    });
+
+    
+
+    
+
+    res.redirect("/");
 });
 
 app.get('/modifica/autore/:id',(req,res)=>{
