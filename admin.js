@@ -120,3 +120,8 @@ app.post('/delrelazione',(req,res)=>{
     db.run(sql);;
     res.redirect('/');
 });
+
+app.use((req,res)=>{
+    res.status(404);
+    res.sendFile(path.join(__dirname,'public','404.html'));
+});
