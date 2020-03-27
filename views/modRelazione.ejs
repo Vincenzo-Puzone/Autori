@@ -10,9 +10,17 @@
         <p class="intestazione">ID Autore</p>
         <p class="intestazione2">ID Libro</p>
         <form method="POST" action="/modrelazione">
-            <input type="hidden" name="id" value="<%= relazione.id %>">
-            <input type="text" name="id_autore" value="<%= relazione.id_autore %>">
-            <input type="text" name="id_libro" value="<%= relazione.id_libro %>">
+            <input type="hidden" name="id" value="<%= relazione.id %> ">
+            <select name="id_autore">
+                <% autori.forEach(autore => { %>
+                    <option value="<%= autore.id %>" > <%= autore.id %> - <%= autore.cognome %> </option>
+                <% }) %>
+            </select>
+            <select name="id_libro">
+                <% libri.forEach(libro => { %>
+                    <option value="<%= libro.id %>" > <%= libro.id %> - <%= libro.titolo %> </option>
+                <% }) %>
+            </select>
             <input type="submit" value="Modifica">
         </form>
     </body>

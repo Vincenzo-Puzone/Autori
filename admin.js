@@ -103,7 +103,14 @@ app.post('/addlibro',(req,res)=>{
 app.get('/modifica/relazione/:id',(req,res)=>{
     sql=`select * from autori_libri where id = ${req.params.id}`;
     db.each(sql,(err,row)=>{
-        res.render('modRelazione',{relazione:row});
+        relazione=row
+        db.all("select * from Autori",(err,rows)=>{
+            autori=rows
+            db.all("select * from libri",(err,rows)=>{
+                libri=rows
+                res.render('modRelazione',{relazione,autori,libri});
+            });
+        });
     });
 });
 

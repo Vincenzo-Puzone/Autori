@@ -83,9 +83,20 @@
             </tr>
         <% }) %>
         <tr>
-            <form action="/addrelazione" method="post">
-                <td><input type="text" name="id_autore"></td>
-                <td><input type="text" name="id_libro"></td>
+            <form method="POST" action="/addrelazione">
+                <input type="hidden" name="id" value="<%= relazioni.id %> ">
+                <td>
+                    <select name="id_autore">
+                        <% autori.forEach(autore => { %>
+                            <option value="<%= autore.id %>" > <%= autore.id %> - <%= autore.cognome %> </option>
+                        <% }) %>
+                    </select>
+                    <select name="id_libro">
+                        <% libri.forEach(libro => { %>
+                            <option value="<%= libro.id %>" > <%= libro.id %> - <%= libro.titolo %> </option>
+                        <% }) %>
+                    </select>
+                </td>
                 <td><input type="submit" value="Aggiungi"></td>
             </form>
         </tr>
