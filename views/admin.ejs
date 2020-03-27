@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <title>Index</title>
+</head>
+<body>
+    <h1>Autori</h1>
+    <table style="width:50%">
+        <tr>
+            <td>ID</td>
+            <td>Nome</td>
+            <td>Cognome</td>
+            <td>Modifica</td>
+            <td>Elimina</td>
+        </tr>
+        <% autori.forEach(autore => { %>
+            <tr>
+                <td><%= autore.id %> </td>
+                <td><%= autore.nome %> </td>
+                <td><%= autore.cognome %> </td>
+                <td><a href="/modifica/autore/<%= autore.id %>">Modifica</a></td>
+                <form action="/delautore" method="post">
+                    <input type="hidden" name="id" value="<%= autore.id %>">
+                    <td><input type="submit" value="Elimina"></td>
+                </form>
+            </tr>
+        <% }) %>
+        <tr>
+            <form action="/addautore" method="post">
+                <td></td>
+                <td><input type="text" name="nome"></td>
+                <td><input type="text" name="cognome"></td>
+                <td><input type="submit" value="Aggiungi"></td>
+            </form>
+        </tr>
+    </table>
+    <h1>Libri</h1>
+    <table style="width:50%">
+        <tr>
+            <td>ID</td>
+            <td>Titolo</td>
+            <td>Modifica </td>
+            <td>Elimina</td>
+        </tr>
+        <% libri.forEach(libro => { %>
+            <tr>
+                <td><%= libro.id %></td>
+                <td><%= libro.titolo %></td>
+                <td><a href="/modifica/libro/<%= libro.id %>">Modifica</a></td>
+                <form action="/dellibro" method="post">
+                    <input type="hidden" name="id" value="<%= libro.id %>">
+                    <td><input type="submit" value="Elimina"></td>
+                </form>
+            </tr>
+        <% }) %>
+        <tr>
+            <form action="/addlibro" method="post">
+                <td></td>
+                <td><input type="text" name="titolo"></td>
+                <td><input type="submit" value="Aggiungi"></td>
+            </form>
+        </tr>
+    </table>
+    <h1>Relazione Autori-Libri</h1>
+    <table style="width:50%">
+        <tr>
+            <td>ID autore</td>
+            <td>ID libro</td>
+            <td>Modifica</td>
+            <td>Elimina</td>
+        </tr>
+        <% relazioni.forEach(relazione => { %>
+            <tr>
+                <td><%= relazione.id_autore %></td>
+                <td><%= relazione.id_libro %></td>
+                <td><a href="/modifica/relazione/<%= relazione.id %>">Modifica</a></td>
+                <form action="/delrelazione" method="post">
+                    <input type="hidden" name="id" value="<%= relazione.id %>">
+                    <td><input type="submit" value="Elimina"></td>
+                </form>
+            </tr>
+        <% }) %>
+        
+    </table>
+</body>
+</html>

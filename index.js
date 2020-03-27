@@ -6,7 +6,7 @@ const favicon = require('serve-favicon');
 const sqlite3 = require('sqlite3');
 
 app = express();
-const port = 8081;
+const port = 8080;
 
 app.set('views',path.join(__dirname,"views"));
 app.set('view engine', 'ejs');

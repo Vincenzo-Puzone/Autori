@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title>Modifica PC</title>
+        <link rel="stylesheet" href="/css/style.css" type="text/css"> 
+    </head>
+    <body>
+        <p><a href="/">Ritorna Home page</a></p>
+        <p class="intestazione">Nome</p>
+        <p class="intestazione2">Cognome</p>
+        <form method="POST" action="/modautore">
+            <input type="hidden" name="id" value="<%= autore.id %>">
+            <input type="text" name="nome" value="<%= autore.nome %>">
+            <input type="text" name="cognome" value="<%= autore.cognome %>">
+            <input type="submit" value="Modifica">
+        </form>
+    </body>
+</html>
