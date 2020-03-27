@@ -121,6 +121,13 @@ app.post('/delrelazione',(req,res)=>{
     res.redirect('/');
 });
 
+app.post('/addrelazione',(req,res)=>{
+    const id=parseInt(req.body.id);
+    let sql = `insert into autori_libri (id_autore, id_libro) values ('${req.body.id_autore}', '${req.body.id_libro}');`;
+    db.run(sql);
+    res.redirect('/');
+});
+
 app.use((req,res)=>{
     res.status(404);
     res.sendFile(path.join(__dirname,'public','404.html'));

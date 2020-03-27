@@ -82,7 +82,13 @@
                 </form>
             </tr>
         <% }) %>
-        
+        <tr>
+            <form action="/addrelazione" method="post">
+                <td><input type="text" name="id_autore"></td>
+                <td><input type="text" name="id_libro"></td>
+                <td><input type="submit" value="Aggiungi"></td>
+            </form>
+        </tr>
     </table>
 </body>
 </html>
