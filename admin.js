@@ -55,11 +55,6 @@ app.post('/creadb',(req,res)=>{
             });
         });
     });
-
-    
-
-    
-
     res.redirect("/");
 });
 
